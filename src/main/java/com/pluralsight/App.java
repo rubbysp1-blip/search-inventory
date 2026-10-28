@@ -15,7 +15,6 @@ public class App {
 
         enterInventoryToList(inventory);
 
-        printInventory(inventory);
     }
 
     private static void enterInventoryToList(ArrayList<Product> inventory) {
@@ -27,24 +26,24 @@ public class App {
                 inventory.add(new Product(Integer.parseInt(products[0]), products[1], Double.parseDouble(products[2])));
             }
             sortListByName(inventory);
+            printInventory(inventory);
 
         } catch (IOException e) {
-            System.out.print("File not found please check file name or direction.");
+            System.out.print("ERROR: File not found please check file name or direction.");
         }
     }
 
     private static void sortListByName(ArrayList<Product> inventory) {
-        Collections.sort(inventory, Comparator.comparing(Product::getName));
+        inventory.sort(Comparator.comparing(Product::getName));
     }
 
     private static void printInventory(ArrayList<Product> inventory) {
-        System.out.println("We carry the following inventory: ");
+        System.out.println("""
+                We carry the following inventory:\s
+                ---------------------------------""");
         for (int i = 0; i < inventory.size(); i++) {
             Product p = inventory.get(i);
-
-            System.out.printf("id: %d %s - Price: $%.2f%n",
-                    p.getId(), p.getName(), p.getPrice());
-
+            System.out.println(p.toPriceFormat());
         }
     }
 

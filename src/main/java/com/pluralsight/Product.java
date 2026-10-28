@@ -34,4 +34,18 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
+    public String toPriceFormat() {
+        return String.format("id: %d %s - Price: $%.2f",
+                id, name, price);
+    }
 }
