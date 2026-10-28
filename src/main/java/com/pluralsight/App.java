@@ -10,30 +10,31 @@ import java.util.Comparator;
 
 public class App {
     public static void main(String[] args) {
-        ArrayList<Product> inventory = getInventory();
-//        inventory.add( new Product(12, "Screws", 12.00));
-//        inventory.add( new Product(12, "Hammer", 12.00));
-//        inventory.add( new Product(12, "Tape", 12.00));
-//        inventory.add( new Product(12, "Rope", 12.00));
-//        inventory.add( new Product(12, "Light Bulbs", 12.00));
 
+        ArrayList<Product> inventory = getInventory();
+
+        enterInventoryToList(inventory);
+
+        printInventory(inventory);
+    }
+
+    private static void enterInventoryToList(ArrayList<Product> inventory) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("inventory.csv"));
             String line;
             while((line = bufferedReader.readLine()) != null){
                 String[] products = line.split("\\|");
                 inventory.add(new Product(Integer.parseInt(products[0]), products[1], Double.parseDouble(products[2])));
-                //System.out.println(line);
-
             }
-
-            Collections.sort(inventory, Comparator.comparing(Product::getName));
+            sortListByName(inventory);
 
         } catch (IOException e) {
             System.out.print("File not found please check file name or direction.");
         }
+    }
 
-        printInventory(inventory);
+    private static void sortListByName(ArrayList<Product> inventory) {
+        Collections.sort(inventory, Comparator.comparing(Product::getName));
     }
 
     private static void printInventory(ArrayList<Product> inventory) {
