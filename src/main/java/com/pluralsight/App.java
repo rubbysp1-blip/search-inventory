@@ -21,7 +21,13 @@ public class App {
         int menuDecision = 0;
         System.out.println("-----------------------------");
         while (menuDecision != 5) {
-            System.out.println("What would you like to do: ");
+            System.out.print("""
+                    What would you like to do:
+                    1. List all products
+                    2. Loop up product by ID
+                    3. Find products by price range
+                    4. Add a product
+                    5. Exit Application:\s""");
             menuDecision = input.nextInt();
 
             switch (menuDecision) {
