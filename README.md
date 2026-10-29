@@ -32,3 +32,6 @@ private static void printInventory(ArrayList<Product> inventory) {
 ## Screenshot
 
 ![The app printing every invetory](images/home-screen.png)
+
+## Author
+Ruby, Year Up Java Academy
